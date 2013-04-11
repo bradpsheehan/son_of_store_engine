@@ -16,8 +16,9 @@ StoreEngine::Application.routes.draw do
   post "/buy_now" => "orders#buy_now", :as => 'buy_now'
   put "/i18n" => "i18n#update"
 
-  resources :sessions, only: [ :new, :create, :destroy ]
-  resources :products, only: [ :index, :show ]
+  resources :sessions,  only:  [ :new, :create, :destroy ]
+  resources :products,  only:  [ :index, :show ]
+  resources :shippings, only:  [ :create ]
 
   resource :cart, only: [ :update, :show, :destroy ] do
     member do

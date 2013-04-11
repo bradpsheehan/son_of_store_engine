@@ -12,6 +12,7 @@ class User < ActiveRecord::Base
   validates :display_name, length: { in: 2..32 }, allow_blank: :true
 
   has_many :orders
+  has_one  :shipping
 
   def default_values
     self.admin = false

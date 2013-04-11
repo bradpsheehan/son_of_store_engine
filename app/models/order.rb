@@ -1,8 +1,11 @@
 class Order < ActiveRecord::Base
   attr_accessible :status, :user_id
   belongs_to :user
+
   has_many :order_items, dependent: :destroy
   has_many :products, through: :order_items
+  has_one  :shipping
+  
   validates :user_id, presence: true
   validates :status, presence: true,
                     inclusion: {in: %w(pending cancelled paid shipped returned),

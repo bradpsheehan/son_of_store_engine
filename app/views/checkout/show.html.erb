@@ -1,18 +1,13 @@
-<!--     <%= simple_form_for :sessions, :url => sessions_path, method: 'POST' do |f| %>
-        <%= f.input :email, input_html: { placeholder: t('placeholder.session.email') } %>
-        <%= f.input :billing_address %>
-        <%= f.input :address_address %>
-        <%= f.hidden_field :next_page, value: checkout_path %>
-        <%= f.button :submit, t('navigation.login'), class:"btn btn-custom-lighten" %>
-      <% end %> -->
-
-  <%= form_tag user_orders_path(current_user) do %>
-    <script src="https://checkout.stripe.com/v2/checkout.js" class="stripe-button"
-            data-key="pk_test_osSOH0LyEEACshdRsLjyvGSz"
-            data-image="/assets/marcy_stripe.png"
-            data-name="<%= t('store.name') %>"
-            data-description="<%= t('purchase') %>"
-            data-label="<%= t('checkout') %>"
-            data-amount="<%= current_cart.total * 100 %>">
-    </script>
-  <% end %>
+<%= simple_form_for :sessions, :url => sessions_path, method: 'POST' do |f| %>
+  <h2> User Information </h2>
+  <%= f.input :email, input_html: { placeholder: t('placeholder.session.email') } %>
+    <h4> Shipping Address </h4>
+    <%= simple_form_for :shippings, :url => shippings_path, method: 'POST' do |s| %>
+      <%= s.input :street %>
+      <%= s.input :city  %>
+      <%= s.input :state %>
+      <%= s.input :zipcode %>
+    <% end %>
+  <%= f.hidden_field :next_page, value: checkout_path %>
+  <%= f.button :submit, 'Checkout', class:"btn btn-custom-lighten" %>
+<% end %>
