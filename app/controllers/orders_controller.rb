@@ -1,5 +1,5 @@
 class OrdersController < ApplicationController
-  before_filter :require_login
+  # before_filter :require_login
 
   def index
     @orders = current_user.orders
@@ -7,6 +7,7 @@ class OrdersController < ApplicationController
 
   def show
     order = Order.find(params[:id])
+    current_user = session[:user_id]
     if current_user.id == order.user_id
       @order = Order.find(params[:id])
     else
@@ -15,9 +16,11 @@ class OrdersController < ApplicationController
   end
 
   def create
+    session[:user_id] = user_for_order.id
     @order = Order.create_and_charge(cart: current_cart,
                                      user: user_for_order,
                                      token: params[:stripeToken])
+    # fail @order.inspect
     if @order.valid?
       session[:cart] = current_cart.destroy
       Mailer.order_confirmation(user_for_order, @order).deliver
@@ -30,7 +33,7 @@ class OrdersController < ApplicationController
 
   def buy_now
     @order = Order.create_and_charge(cart: Cart.new({params[:order] => '1'}),
-                                     user: user_for_order,
+                                     user: user_for_order(params[:order][:email]),
                                      token: params[:stripeToken])
     if @order.valid?
       session[:cart] = current_cart.destroy
@@ -45,14 +48,12 @@ class OrdersController < ApplicationController
   private
 
   def user_for_order
-    # is there a current_user?
-    #   is there a user by email address?
-    #     generate a user by email adddress, assigning a random password
     user = current_user
-    user ||= User.find_by_email(email_adddress)
-    user ||= User.create_public_user
+    email_address = params[:user][:email]
+    user ||= User.find_by_email(email_address)
+    user ||= User.create_public_user(params[:user])
     user
   end
 
-  
+
 end

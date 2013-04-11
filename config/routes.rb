@@ -6,7 +6,8 @@ StoreEngine::Application.routes.draw do
   get "/login" => "sessions#new", :as => "login"
   get "/signup" => "users#new", :as => "signup"
 
-  get "/checkout" => "checkout#show"
+  get "/checkout"  => "checkout#show"
+  post "/checkout" => "checkout#create"
 
   get "/account" => redirect("/account/profile")
   get "/account/profile" => "users#show"
@@ -19,6 +20,7 @@ StoreEngine::Application.routes.draw do
   resources :sessions,  only:  [ :new, :create, :destroy ]
   resources :products,  only:  [ :index, :show ]
   resources :shippings, only:  [ :create ]
+  resources :orders
 
   resource :cart, only: [ :update, :show, :destroy ] do
     member do
