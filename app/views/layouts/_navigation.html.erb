@@ -15,7 +15,7 @@
       <li><%= link_to t('admin.self'), store_admin_dashboard_path(current_store) %></li>
     <% end %>
 
-    <% if logged_in? && current_user.registered?%>
+    <% if logged_in? %>
         <li><%= render 'layouts/logout_button' %></li>
         <li><%= link_to t('navigation.account'), account_profile_path %></li>
     <% else %>

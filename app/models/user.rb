@@ -33,8 +33,13 @@ class User < ActiveRecord::Base
   end
 
   def self.create_public_user(data)
-    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
-    password = (0...50).map{ o[rand(o.length)] }.join
+    password = string_gen
     User.create({ full_name: "Customer", password: password, password_confirmation: password, registered: false }.merge(data) )
+  end
+
+  def self.string_gen
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    value = (0...50).map{ o[rand(o.length)] }.join
+    value
   end
 end

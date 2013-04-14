@@ -1,5 +1,5 @@
 <div class="order-show">
-  
+
   <% if current_user.registered == true %>
   <%= render partial: '/users/user_navigation', locals: { active: false } %>
   <% end %>
@@ -8,6 +8,7 @@
     <h1><%= t('order.self') %> #<%= @order.id %></h1>
     <p><%= t('model.createdat') %> <%= @order.created_at.to_s(:short) %></p>
     <span class="label default"><%= @order.status %></span> <%= t('time.asof') %> <%=@order.updated_at.to_s(:short) %>
+    <p>You can visit your order anytime by visiting this url: <%= link_to "/#{@order.url}" %></p>
     <br>
     <br>
 
