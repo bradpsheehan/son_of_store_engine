@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130413001447) do
+ActiveRecord::Schema.define(:version => 20130413231324) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -26,6 +26,20 @@ ActiveRecord::Schema.define(:version => 20130413001447) do
   end
 
   add_index "addresses", ["addressable_type", "addressable_id"], :name => "index_addresses_on_addressable_type_and_addressable_id"
+
+  create_table "billings", :force => true do |t|
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "billings", ["order_id"], :name => "index_billings_on_order_id"
+  add_index "billings", ["user_id"], :name => "index_billings_on_user_id"
 
   create_table "categories", :force => true do |t|
     t.integer  "store_id"
@@ -70,6 +84,20 @@ ActiveRecord::Schema.define(:version => 20130413001447) do
     t.datetime "created_at",                                :null => false
     t.datetime "updated_at",                                :null => false
   end
+
+  create_table "shippings", :force => true do |t|
+    t.string   "street"
+    t.string   "city"
+    t.string   "state"
+    t.string   "zipcode"
+    t.integer  "user_id"
+    t.integer  "order_id"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  add_index "shippings", ["order_id"], :name => "index_shippings_on_order_id"
+  add_index "shippings", ["user_id"], :name => "index_shippings_on_user_id"
 
   create_table "stores", :force => true do |t|
     t.string   "name"

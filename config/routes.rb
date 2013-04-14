@@ -13,6 +13,8 @@ StoreEngine::Application.routes.draw do
     resources :orders, except: [ :show ]
   end
 
+  post "/create_order" => "orders#create"
+
   scope path: "account", as: "account" do
     get "/profile" => "users#show", as: :profile
     get "/orders" => "orders#index", as: :orders

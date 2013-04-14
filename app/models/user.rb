@@ -1,9 +1,11 @@
 class User < ActiveRecord::Base
   authenticates_with_sorcery!
+
   attr_accessible :display_name, :email, :full_name,
                   :password, :password_confirmation
-  has_one :billing_address, as: :addressable
-  has_one :shipping_address, as: :addressable
+  
+  has_one :billing
+  has_one :shipping
 
   validates_confirmation_of :password,
                             message: "passwords did not match", if: :password
@@ -24,5 +26,11 @@ class User < ActiveRecord::Base
 
   def uber?
     self.uber
+  end
+
+  def self.create_public_user(data)
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    password = (0...50).map{ o[rand(o.length)] }.join
+    User.create({ full_name: "Customer", password: password, password_confirmation: password }.merge(data) )
   end
 end
