@@ -1,5 +1,9 @@
 class Order < ActiveRecord::Base
-  attr_accessible :status, :user_id, :store_id
+
+  attr_accessible :status,
+                  :user_id,
+                  :store_id,
+                  :url
 
   belongs_to :user
   belongs_to :store
@@ -24,7 +28,9 @@ class Order < ActiveRecord::Base
   end
 
   def self.create_and_charge(params)
-    order = create(status: 'pending', user_id: params[:user].id)
+    order_url = string_gen
+
+    order = create(status: 'pending', url: order_url, user_id: params[:user].id)
 
     params[:cart].items.each do |cart_item|
       order.order_items.create(product_id: cart_item.product.id,
@@ -53,5 +59,11 @@ class Order < ActiveRecord::Base
     else
       0
     end
+  end
+
+  def self.string_gen
+    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
+    value = (0...10).map{ o[rand(o.length)] }.join
+    value
   end
 end

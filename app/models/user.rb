@@ -6,8 +6,9 @@ class User < ActiveRecord::Base
                   :full_name,
                   :password,
                   :password_confirmation,
-                  :registered
-  
+                  :registered,
+                  :uber
+
   has_one :billing
   has_one :shipping
 
@@ -34,21 +35,13 @@ class User < ActiveRecord::Base
   end
 
   def self.create_public_user(data)
-    o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
-    password = (0...50).map{ o[rand(o.length)] }.join
+    password = string_gen
     User.create({ full_name: "Customer", password: password, password_confirmation: password, registered: false }.merge(data) )
   end
 
-  # option 2
-  def god_given_name
-    (full_name || "Customer").titleize
-  end
-
-  def self.create_public_user(data)
+  def self.string_gen
     o =  [('a'..'z'),('A'..'Z')].map{|i| i.to_a}.flatten
-    password = (0...50).map{ o[rand(o.length)] }.join
-    # option 1
-    # User.create({ password: password, password_confirmation: password }.merge(data) )
-    User.create({ full_name: "Customer", password: password, password_confirmation: password }.merge(data) )
+    value = (0...50).map{ o[rand(o.length)] }.join
+    value
   end
 end

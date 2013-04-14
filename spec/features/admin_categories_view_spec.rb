@@ -1,13 +1,16 @@
 require 'spec_helper'
 
 describe 'the admin categories view', type: :feature do
+  let!(:user){ User.create(uber: true, password: "password", password_confirmation: "password", full_name: "Logan", email: "logan@gmail.com", display_name: "Logan") }
+
   before(:each) do
-    FactoryGirl.create(:admin)
     visit login_path
     fill_in 'sessions_email', with: 'logan@gmail.com'
     fill_in 'sessions_password', with: 'password'
     click_button 'Login'
-    visit admin_categories_path
+    click_link 'pbj'
+    click_link '/pbj/admin/dashboard'
+    visit store_admin_categories_path
   end
 
   it 'should have a title' do
@@ -26,7 +29,7 @@ describe 'the admin categories view', type: :feature do
     end
 
     it 'creates a new category with valid input' do
-      expect(current_path).to eq admin_categories_path
+      expect(current_path).to eq store_admin_categories_path
     end
 
     it 'rejects invalid category input' do
@@ -40,7 +43,7 @@ describe 'the admin categories view', type: :feature do
       click_link "Edit"
       fill_in "Title", with: 'gooey'
       click_button "Submit"
-      expect(current_path).to eq admin_categories_path
+      expect(current_path).to eq store_admin_categories_path
     end
   end
 end
