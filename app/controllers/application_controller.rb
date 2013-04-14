@@ -1,17 +1,16 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
-  helper_method :current_cart, :get_flag
+  helper_method :current_cart, :current_store, :get_flag
   before_filter :get_locale
 
   def require_admin
-    if current_user == false
+    if current_store.nil? || !current_store.is_admin?(current_user)
       not_authenticated
-    elsif current_user.admin == true
-      true
-    else
-      redirect_to login_path,
-        :alert => "Only system administrators may access this page"
     end
+  end
+
+  def require_uber
+    not_authenticated unless current_user && current_user.uber?
   end
 
   def not_authenticated
@@ -26,6 +25,10 @@ class ApplicationController < ActionController::Base
     @cart ||= Cart.new(session[:cart])
   end
 
+  def current_store
+    @store ||= Store.where(path: params[:store_path]).first
+  end
+
   def get_locale
     I18n.locale = session[:i18n] || I18n.default_locale || :en
   end
@@ -38,4 +41,9 @@ class ApplicationController < ActionController::Base
     else 'us'
     end
   end
+
+  def not_found
+    raise ActionController::RoutingError.new('Not Found')
+  end
+
 end
