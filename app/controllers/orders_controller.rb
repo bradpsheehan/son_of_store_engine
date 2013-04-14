@@ -32,7 +32,7 @@ class OrdersController < ApplicationController
       billing = Billing.create(billing_params)
 
       Mailer.order_confirmation(user_for_order, @order).deliver
-      redirect_to order_path(@order),
+      redirect_to account_order_path(@order),
         :notice => "Order submitted!"
     else
       redirect_to cart_path, :notice => "Checkout failed."
