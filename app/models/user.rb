@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
                   :full_name,
                   :password,
                   :password_confirmation,
-                  :registered
+                  :registered,
+                  :uber
   
   has_one :billing
   has_one :shipping
