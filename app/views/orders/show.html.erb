@@ -1,5 +1,8 @@
 <div class="order-show">
+  
+  <% if current_user.registered == true %>
   <%= render partial: '/users/user_navigation', locals: { active: false } %>
+  <% end %>
 
   <div class="span8">
     <h1><%= t('order.self') %> #<%= @order.id %></h1>
@@ -16,7 +19,7 @@
         <th><%= t('product.subtotal') %></th>
       </thead>
       <tbody>
-        <%= render partial: 'order_item', collection: @order_items %>
+        <%= render partial: 'order_item', collection: @order.order_items %>
       </tbody>
       <tfoot>
         <tr>

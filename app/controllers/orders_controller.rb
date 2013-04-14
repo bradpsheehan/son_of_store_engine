@@ -56,10 +56,13 @@ class OrdersController < ApplicationController
   private
 
   def user_for_order
-    user = current_user
-    email_address = params[:user][:email]
-    user ||= User.find_by_email(email_address)
-    user ||= User.create_public_user(params[:user])
+    if current_user
+      user = current_user
+    else
+      email_address = params[:user][:email]
+      user ||= User.find_by_email(email_address)
+      user ||= User.create_public_user(params[:user])
+    end
     user
   end
 end
