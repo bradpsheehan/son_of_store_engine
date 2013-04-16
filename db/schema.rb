@@ -27,6 +27,7 @@ ActiveRecord::Schema.define(:version => 20130413001447) do
   add_index "addresses", ["user_id", "type"], :name => "index_addresses_on_user_id_and_type", :unique => true
 
   create_table "categories", :force => true do |t|
+    t.integer  "store_id"
     t.string   "title"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
@@ -51,6 +52,7 @@ ActiveRecord::Schema.define(:version => 20130413001447) do
 
   create_table "orders", :force => true do |t|
     t.integer  "user_id"
+    t.integer  "store_id"
     t.string   "status"
     t.string   "guid"
     t.datetime "created_at", :null => false
@@ -61,6 +63,7 @@ ActiveRecord::Schema.define(:version => 20130413001447) do
   add_index "orders", ["user_id"], :name => "index_orders_on_user_id"
 
   create_table "products", :force => true do |t|
+    t.integer  "store_id"
     t.string   "title"
     t.text     "description"
     t.decimal  "price",       :precision => 8, :scale => 2
@@ -77,6 +80,9 @@ ActiveRecord::Schema.define(:version => 20130413001447) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
   end
+
+  add_index "stores", ["path"], :name => "index_stores_on_path"
+  add_index "stores", ["status"], :name => "index_stores_on_status"
 
   create_table "user_store_roles", :force => true do |t|
     t.integer  "store_id"
