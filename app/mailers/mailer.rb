@@ -2,8 +2,8 @@ class Mailer < ActionMailer::Base
   add_template_helper(MailerHelper)
   default from: "frank@franks-monsterporium.com"
 
-  def welcome_email(email, full_name)
-    @full_name = full_name
+  def welcome_email(name, email)
+    @full_name = name
     mail(to: email, subject: "Welcome to Frank's Monsterporium!")
   end
 
