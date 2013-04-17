@@ -51,8 +51,7 @@ private
                                    price: order.total,
                                    email: order.user.email,
                                    order: order
-
-        Mailer.order_confirmation(user, order).deliver
+        Resque.enqueue(OrderConfirmationEmailJob, user.full_name, user.email, order.id)
       end
     end
   end
