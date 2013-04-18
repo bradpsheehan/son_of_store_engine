@@ -1,9 +1,8 @@
 <tr>
   <td>
-    <%= link_to store.name, store_home_path(store) %>
+    <%= link_to store.name, home_url(subdomain: store.path) %>
     <br>
-    <br>
-    <h5><%= link_to 'Administer', store_admin_manage_path(store) %></h5>
+    <h5><%= link_to 'Administer', admin_manage_url(subdomain: store.path) %></h5>
   </td>
   <td><%= store.path %></td>
   <td><%= store.description.slice(0, 32) %></td>

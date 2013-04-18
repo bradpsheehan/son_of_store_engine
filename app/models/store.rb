@@ -25,9 +25,11 @@ class Store < ActiveRecord::Base
   scope :online, lambda { where(status: 'online') }
 
   def is_admin?(user)
-    user.uber? || UserStoreRole.exists?(store_id: self,
-                                        user_id: user,
-                                        role: :admin)
+    if user
+      user.uber? || UserStoreRole.exists?(store_id: self,
+                                          user_id: user,
+                                          role: :admin)
+    end
   end
 
   def self.themes

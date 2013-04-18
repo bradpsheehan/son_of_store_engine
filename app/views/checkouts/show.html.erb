@@ -1,5 +1,5 @@
 <div class="login-form">
-  <%= simple_form_for @user, url: store_checkout_path(current_store), method: :post do |f| %>
+<%= simple_form_for @user, url: checkout_path, method: :post do |f| %>
   <% if @user.new_record? %>
     <div class="span10">
       <h3>Contact Information</h3>
