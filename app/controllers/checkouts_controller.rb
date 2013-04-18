@@ -46,7 +46,7 @@ private
 
   def create_order(user, cart_items)
     Order.create_pending_order(user, cart_items).tap do |order|
-      Resque.enqueue(OrderConfirmEmailJob, user, order.id, order.total)
+      Resque.enqueue(OrderConfirmEmailJob, user, order.guid, order.total)
     end
   end
 end

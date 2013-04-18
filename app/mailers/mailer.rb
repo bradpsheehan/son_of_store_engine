@@ -7,9 +7,9 @@ class Mailer < ActionMailer::Base
     mail(to: email, subject: "Welcome to Robofy!")
   end
 
-  def order_confirmation(user, order_id, order_total)
+  def order_confirmation(user, order_guid, order_total)
     @user = user
-    @order_id = order_id
+    @order_guid = order_guid
     @order_total = order_total
     mail(to: user["email"], subject: "Thanks for your purchase!")
   end
