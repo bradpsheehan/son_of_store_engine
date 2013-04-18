@@ -1,14 +1,12 @@
 <div class="span11">
+    <% @stores.each do |store| %>
+    <tr>
+      <td><%= link_to store.name, home_url(subdomain: store.path) %></td>
+      <td><%= store.path %></td>
+      <td><%= store.description %></td>
+    </tr>
+    <% end %>
+  </table>
 
-    <h3>Our Stores</h3>
-    <hr>
-
-      <% @stores.each do |store| %>
-        <h3><%= link_to store.name, store.path %></h3>
-        <p><%= store.description %></p>
-        <br />
-      <% end %>
-
-  </div>
-
+  <br />
 </div>
