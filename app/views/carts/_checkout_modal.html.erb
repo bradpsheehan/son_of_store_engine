@@ -6,11 +6,11 @@
       <%= simple_form_for :sessions, url: sessions_path, method: 'POST' do |f| %>
       <%= f.input :email %>
       <%= f.input :password %>
-      <%= f.hidden_field :next_page, value: store_checkout_path(current_store) %>
+      <%= f.hidden_field :next_page, value: checkout_path %>
       <%= f.button :submit, t('navigation.login'), class: "btn btn-large btn-custom-lighten btn-block" %>
-      <%= link_to 'Create an Account', signup_path(next_page: store_checkout_path(current_store)), class: 'btn btn-block' %>
+      <%= link_to 'Create an Account', signup_path(next_page: checkout_path), class: 'btn btn-block' %>
       <hr>
-      <%= link_to 'Continue as Guest', store_checkout_path(current_store), class: 'btn btn-block' %>
+      <%= link_to 'Continue as Guest', checkout_path, class: 'btn btn-block' %>
       <% end %>
     </div>
     <div style="clear:both"></div>
