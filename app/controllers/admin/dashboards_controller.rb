@@ -21,7 +21,7 @@ class Admin::DashboardsController < ApplicationController
   def update
     @store = current_store
     if @store.update_attributes(params[:store])
-      redirect_to store_admin_manage_path(current_store),
+      redirect_to admin_manage_path,
                   notice: "Successfully updated store"
     else
       render action: 'edit'

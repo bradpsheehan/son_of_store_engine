@@ -23,11 +23,9 @@
         <div style="padding-right: 10px;"><h3 style="text-align: right;">Total: <%= number_to_currency(current_cart.total) %></h3></div>
       <div class ="btn-toolbar">
         <span class="btn-group pull-right">
-          <%= render partial: 'checkout_button' %>
+          <%= render partial: 'checkout_button' %><br /><br />
+          <%= button_to t('cart.empty'), cart_path, class: 'btn btn-block', method: :delete %>
         </span>
-        <div class="pull-left">
-          <%= button_to t('cart.empty'), store_cart_path(current_store), class: 'btn span3', method: :delete %>
-        </div>
       </div>
 
     </div>

@@ -6,13 +6,13 @@ class Admin::RolesController < ApplicationController
     role = params[:user][:role]
 
     if email.blank?
-      redirect_to store_admin_manage_path(current_store),
+      redirect_to admin_manage_path,
                   notice: 'Please enter an email.'
     elsif user = User.where(email: email).first
       Role.promote(user, current_store, role)
 
       Resque.enqueue(RoleConfirmEmailJob, user, current_store, role)
-      redirect_to store_admin_manage_path(current_store),
+      redirect_to admin_manage_path,
                   notice: 'Successfully promoted user.'
     else
       Resque.enqueue(RoleInviteEmailJob,
@@ -20,7 +20,7 @@ class Admin::RolesController < ApplicationController
                      current_user,
                      current_store,
                      role)
-      redirect_to store_admin_manage_path(current_store),
+      redirect_to admin_manage_path,
                   notice: 'Successfully invited user.'
     end
   end
@@ -30,7 +30,7 @@ class Admin::RolesController < ApplicationController
     Role.revoke(user_id, current_store)
 
     Resque.enqueue(RoleRevokeEmailJob, User.find(user_id), current_store)
-    redirect_to store_admin_manage_path(current_store),
+    redirect_to admin_manage_path,
                 notice: "Successfully revoked role."
   end
 end

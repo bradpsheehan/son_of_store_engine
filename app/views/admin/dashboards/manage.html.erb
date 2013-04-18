@@ -1,4 +1,4 @@
-<div class="admin-dashboard-manage">
+<div class="admin-product-index">
   <%= render partial: 'shared/admin_navigation',
   locals: { active: :manage }  %>
 
@@ -18,7 +18,7 @@
     <h4>Theme</h4>
     <p><%= current_store.theme %></p>
 
-    <%= link_to 'Edit', store_admin_edit_store_path(current_store) %>
+    <%= link_to 'Edit', admin_edit_store_path %>
     <hr>
     <%= render partial: 'add_admin', locals: { admin: @admin } %>
     <table class="table table-striped">
