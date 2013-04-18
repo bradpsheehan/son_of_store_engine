@@ -20,7 +20,7 @@
       </div>
     </nav>
   </header>
-  <% if request.fullpath == '/' && request.subdomain == '' %>
+  <% if request.fullpath == '/' && request.subdomain == 'www' || request.subdomain == '' %>
     <%= render 'layouts/index' %>
   <% end %>
   <div class="container">
