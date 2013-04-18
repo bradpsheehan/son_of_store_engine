@@ -1,8 +1,11 @@
 <div class="login-form">
 <%= simple_form_for @user, url: checkout_path, method: :post do |f| %>
   <% if @user.new_record? %>
-  <h4>Email</h4>
-  <%= f.input :email, input_html: { placeholder: t('placeholder.session.email') } %>
+    <div class="span10">
+      <h3>Contact Information</h3>
+      <hr>
+      <%= f.input :email, input_html: { placeholder: t('placeholder.session.email') } %>
+    </div>
   <% end %>
 
   <div class="span5">

@@ -2,7 +2,7 @@
   <td>
     <%= link_to store.name, home_url(subdomain: store.path) %>
     <br>
-    <%= link_to 'Administer', admin_manage_url(subdomain: store.path) %>
+    <h5><%= link_to 'Administer', admin_manage_url(subdomain: store.path) %></h5>
   </td>
   <td><%= store.path %></td>
   <td><%= store.description.slice(0, 32) %></td>
@@ -11,7 +11,7 @@
   <td>
     <%= button_to 'Approve',
                 approve_uber_store_path(store.id),
-                method: :put, class: 'btn span2' %>
+                method: :put, class: 'btn btn-success span2' %>
 
     <%= button_to 'Decline',
                 decline_uber_store_path(store.id),
