@@ -13,7 +13,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def update
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
     if params[:update_status]
       @order.update_status
     end

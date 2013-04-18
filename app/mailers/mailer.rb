@@ -1,10 +1,10 @@
 class Mailer < ActionMailer::Base
   add_template_helper(MailerHelper)
-  default from: "white@mrwhite-sose.herokuapp.com"
+  default from: "robofy@sexsuspended.com"
 
   def welcome_email(email, full_name)
     @full_name = full_name
-    mail(to: email, subject: "Welcome to White's Monsterporium!")
+    mail(to: email, subject: "Welcome to Robofy!")
   end
 
   def order_confirmation(user, order_id, order_total)
