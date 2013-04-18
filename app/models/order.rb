@@ -1,7 +1,7 @@
 class Order < ActiveRecord::Base
   attr_accessible :status, :user_id, :store_id
   belongs_to :user
-  belongs_to :store
+  belongs_to :store, counter_cache: true
   has_many :order_items, validate: true, dependent: :destroy
   has_many :products, through: :order_items
   has_one :billing_address, as: :addressable

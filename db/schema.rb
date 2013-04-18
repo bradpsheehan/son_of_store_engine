@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130417213010) do
+ActiveRecord::Schema.define(:version => 20130418082018) do
 
   create_table "addresses", :force => true do |t|
     t.string   "street"
@@ -55,8 +55,9 @@ ActiveRecord::Schema.define(:version => 20130417213010) do
     t.integer  "store_id"
     t.string   "status"
     t.string   "guid"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",                 :null => false
+    t.datetime "updated_at",                 :null => false
+    t.integer  "order_count", :default => 0
   end
 
   add_index "orders", ["guid"], :name => "index_orders_on_guid", :unique => true
@@ -81,9 +82,6 @@ ActiveRecord::Schema.define(:version => 20130417213010) do
     t.datetime "updated_at",                         :null => false
     t.string   "theme",       :default => "default"
   end
-
-  add_index "stores", ["path"], :name => "index_stores_on_path"
-  add_index "stores", ["status"], :name => "index_stores_on_status"
 
   create_table "user_store_roles", :force => true do |t|
     t.integer  "store_id"

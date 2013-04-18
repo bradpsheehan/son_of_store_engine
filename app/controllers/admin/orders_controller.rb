@@ -2,9 +2,9 @@ class Admin::OrdersController < ApplicationController
   before_filter :require_admin
 
   def index
-    @count = current_user.orders.count
-    @orders = current_user.orders.by_status(params[:status]).all
-    @statuses = current_user.orders.count(group: :status)
+    @count = current_store.orders.size
+    @orders = current_store.orders.by_status(params[:status]).all
+    @statuses = current_store.orders.count(group: :status)
     @active_tab = params[:status] || 'all'
   end
 
