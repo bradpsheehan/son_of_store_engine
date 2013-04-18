@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
   helper_method :current_cart, :current_store, :flag, :store_theme,
-                :store_products_path, :edit_store_product_path
+                :products_path, :edit_product_path
 
   before_filter :locale
 
@@ -44,9 +44,9 @@ class ApplicationController < ActionController::Base
 
   def current_store
     if current_user && current_user.uber?
-      @store ||= Store.where(path: params[:store_path]).first
+      @store ||= Store.where(path: request.subdomain).first
     else
-      @store ||= Store.online.where(path: params[:store_path]).first
+      @store ||= Store.online.where(path: request.subdomain).first
     end
   end
 
@@ -54,19 +54,19 @@ class ApplicationController < ActionController::Base
     I18n.locale = session[:i18n] || I18n.default_locale || :en
   end
 
-  def store_products_path(role, store)
+  def products_path(role, store)
     if role == :admin
-      store_admin_products_path(store)
+      admin_products_path(store)
     elsif role == :stocker
-      store_stock_products_path(store)
+      stock_products_path(store)
     end
   end
 
-  def edit_store_product_path(role, store, product)
+  def edit_product_path(role, store, product)
     if role == :admin
-      edit_store_admin_product_path(store, product)
+      edit_admin_product_path(store, product)
     elsif role == :stocker
-      store_stock_edit_product_path(store, product)
+      stock_edit_product_path(store, product)
     end
   end
 
