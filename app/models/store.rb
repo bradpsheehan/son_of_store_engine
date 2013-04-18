@@ -19,7 +19,7 @@ class Store < ActiveRecord::Base
                      inclusion: { in: %w(online offline pending declined) }
 
   validates :theme, presence: true,
-                    inclusion: { in: %w(default wood soft mocha scale escheresque metal) }
+                    inclusion: { in: %w(default wood mocha dark scale escheresque metal) }
 
   scope :approved, lambda { where("status <> 'declined'") }
 
@@ -34,7 +34,7 @@ class Store < ActiveRecord::Base
   end
 
   def self.themes
-    %w(default wood soft mocha scale escheresque metal)
+    %w(default wood mocha dark scale escheresque metal)
   end
 
   def is_stocker?(user)
