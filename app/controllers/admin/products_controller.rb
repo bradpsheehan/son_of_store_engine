@@ -17,7 +17,7 @@ class Admin::ProductsController < ApplicationController
   def create
     @product = current_store.products.new(params[:product])
     if @product.save
-      redirect_to admin_product_path,
+      redirect_to products_path(@role, current_store),
         :notice => "Successfully created product."
     else
       render :action => 'new', :notice  => "Product creation failed."
@@ -29,7 +29,7 @@ class Admin::ProductsController < ApplicationController
 
   def update
     if @product.update_attributes(params[:product])
-      redirect_to admin_product_path,
+      redirect_to products_path(@role, current_store),
         :notice  => "Successfully updated product."
     else
       render :action => 'edit', :notice  => "Update failed."
@@ -38,13 +38,13 @@ class Admin::ProductsController < ApplicationController
 
   def destroy
     @product.destroy
-    redirect_to admin_product_path,
+    redirect_to products_path(@role, current_store),
       :notice => "Successfully destroyed product."
   end
 
   def toggle_status
     if @product.toggle_status
-      redirect_to admin_product_path,
+      redirect_to products_path(@role, current_store),
         :notice  => "Product status successfully set to '#{@product.status}'."
     else
       head 400
