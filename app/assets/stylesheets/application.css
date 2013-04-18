@@ -14,7 +14,8 @@
 
 /* For the Shopping Cart Show Page*/
 #shopping_cart_summary {
-  float: right;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 /* This is the sidebar nav used for user account and admin stuff*/

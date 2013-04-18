@@ -53,6 +53,7 @@ a {
 a:hover,
 a:focus {
   color: #8B2252;
+  text-decoration: none;
 }
 
 // NAVIGATION
@@ -63,7 +64,7 @@ a:focus {
 
 .logo-text {
   float: left;
-  font-size: 20px;
+  font-size: 250%;
   margin-top: 20px;
   margin-left: -10px;
 }

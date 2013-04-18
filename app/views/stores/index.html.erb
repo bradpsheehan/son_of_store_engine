@@ -1,14 +1,11 @@
-<div class="span11">
+<div class="span11", style="padding-left: 135px">
 
-    <h3>Our Stores</h3>
-    <hr>
-
-      <% @stores.each do |store| %>
-        <h3><%= link_to store.name, store.path %></h3>
-        <p><%= store.description %></p>
-        <br />
-      <% end %>
-
+  <div style="margin-left: auto; margin-right: auto; width: 1000px;">
+    <% @stores.each do |store| %>
+      <h3 style="font-size: 600%; margin-bottom: 60px;"><%= link_to store.name, store.path %></h3>
+<!--       <p><%= store.description %></p>
+ -->      <br />
+    <% end %>
   </div>
 
 </div>
