@@ -1,4 +1,5 @@
 class ApplicationController < ActionController::Base
+  include UrlHelper
   protect_from_forgery
   helper_method :current_cart, :current_store, :flag, :store_theme,
                 :products_path, :edit_product_path

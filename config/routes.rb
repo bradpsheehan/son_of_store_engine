@@ -33,7 +33,7 @@ StoreEngine::Application.routes.draw do
     end
   end
 
-  constraints :subdomain => /.+/ do
+  constraints Subdomain do
     get "/" => "products#index", as: :home
 
     get "/checkout" => "checkouts#show", as: :checkout

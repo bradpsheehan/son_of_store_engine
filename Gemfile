@@ -11,6 +11,8 @@ gem 'validation-scopes'
 gem "resque", "~>1.24.0"
 gem 'kaminari'
 gem 'pg'
+gem 'faker'
+gem 'unicorn'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -19,7 +21,6 @@ group :assets do
 end
 
 group :development, :test do
-  gem 'faker'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'cane'
@@ -31,7 +32,6 @@ group :development, :test do
 end
 
 group :test do
-  gem 'faker'
   gem 'guard-rspec'
   gem 'launchy'
 end
