@@ -10,6 +10,7 @@ gem 'sorcery'
 gem 'validation-scopes'
 gem "resque", "~>1.24.0"
 gem 'kaminari'
+gem 'newrelic_rpm'
 gem 'pg'
 gem 'faker'
 gem 'unicorn'
@@ -28,7 +29,6 @@ group :development, :test do
   gem 'debugger'
   gem 'capybara'
   gem 'simplecov'
-  gem 'newrelic_rpm'
 end
 
 group :test do
