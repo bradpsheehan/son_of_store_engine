@@ -19,7 +19,8 @@ class Store < ActiveRecord::Base
                      inclusion: { in: %w(online offline pending declined) }
 
   validates :theme, presence: true,
-                    inclusion: { in: %w(default wood mocha dark scale escheresque metal) }
+                    inclusion: { in: %w(default wood mocha dark
+                                        scale escheresque metal) }
 
   scope :approved, lambda { where("status <> 'declined'") }
 
