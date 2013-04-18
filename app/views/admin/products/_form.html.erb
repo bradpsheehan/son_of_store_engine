@@ -1,5 +1,3 @@
-<%# TODO: Should have Photo URL here to edit? Requires change to our URL strategy %>
-
 <%= simple_form_for [:admin, @product] do |f| %>
   <%= f.input :title, input_html: { placeholder: t('placeholder.product.title') } %>
   <%= f.input :description, input_html: { placeholder: t('placeholder.product.description') } %>
