@@ -24,9 +24,10 @@
       <div class ="btn-toolbar">
         <span class="btn-group pull-right">
           <%= render partial: 'checkout_button' %><br /><br />
-          <%= button_to t('cart.empty'), cart_path, class: 'btn btn-block', method: :delete %>
         </span>
       </div>
+
+      <div class="pull-left" style="width: 80px;"> <%= button_to t('cart.empty'), cart_path, class: 'btn btn-block', method: :delete %> </div>
 
     </div>
 
