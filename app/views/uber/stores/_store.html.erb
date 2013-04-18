@@ -1,8 +1,8 @@
 <tr>
   <td>
-    <%= link_to store.name, home_path %>
+    <%= link_to store.name, home_url(subdomain: store.path) %>
     <br>
-    <%= link_to 'Administer', admin_manage_path %>
+    <%= link_to 'Administer', admin_manage_url(subdomain: store.path) %>
   </td>
   <td><%= store.path %></td>
   <td><%= store.description.slice(0, 32) %></td>
@@ -10,23 +10,23 @@
   <% if store.status == 'pending' %>
   <td>
     <%= button_to 'Approve',
-                approve_uber_path(store.id),
+                approve_uber_store_path(store.id),
                 method: :put, class: 'btn' %>
 
     <%= button_to 'Decline',
-                decline_uber_path(store.id),
+                decline_uber_store_path(store.id),
                 method: :put, class: 'btn' %>
   </td>
   <% elsif store.status == 'online' %>
   <td>
     <%= button_to 'Disable',
-                toggle_online_status_uber_path(store.id),
+                toggle_online_status_uber_store_path(store.id),
                 method: :put, class: 'btn' %>
   </td>
   <% elsif store.status == 'offline' %>
   <td>
     <%= button_to 'Enable',
-                toggle_online_status_uber_path(store.id),
+                toggle_online_status_uber_store_path(store.id),
                 method: :put, class: 'btn' %>
   </td>
   <% end %>

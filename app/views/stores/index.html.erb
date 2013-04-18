@@ -11,7 +11,7 @@
 
     <% @stores.each do |store| %>
     <tr>
-      <td><%= link_to store.name, store.path %></td>
+      <td><%= link_to store.name, home_url(subdomain: store.path) %></td>
       <td><%= store.path %></td>
       <td><%= store.description %></td>
     </tr>

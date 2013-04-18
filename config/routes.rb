@@ -3,8 +3,6 @@ require 'resque/server'
 StoreEngine::Application.routes.draw do
   mount Resque::Server.new, at: "/resque"
 
-  # match '/' => "abc#123", constraints: { subdomain: /.+/ }
-
   get "/code" => redirect("http://github.com/raphweiner/son_of_store_engine")
   put "/i18n" => "i18n#update"
 
@@ -35,9 +33,7 @@ StoreEngine::Application.routes.draw do
     end
   end
 
-  constraints :subdomain => /.+/, as: :store do
-    # raise request.subdomain.inspect
-  # scope "/:store_path", as: :store do
+  constraints :subdomain => /.+/ do
     get "/" => "products#index", as: :home
 
     get "/checkout" => "checkouts#show", as: :checkout

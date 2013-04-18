@@ -8,7 +8,7 @@
     <div id="product-categories">
       <b><%= t('categories.self') %>:</b>
       <% @product.categories.each do |category| %>
-          <a href='/products/?category_id=<%= category.id %>'><span class="label"><%= category.title %></span></a>
+          <a href='<%= home_path(category_id: category.id) %>'><span class="label"><%= category.title %></span></a>
       <% end %>
     </div>
     <br>

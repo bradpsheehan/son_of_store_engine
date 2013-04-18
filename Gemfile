@@ -3,16 +3,14 @@ source 'https://rubygems.org'
 gem 'rails', '3.2.13'
 gem 'jquery-rails'
 gem 'rake'
-gem 'unicorn'
 gem 'bootstrap-sass'
 gem 'simple_form'
 gem 'jquery-rails'
 gem 'sorcery'
-gem 'pg'
 gem 'validation-scopes'
 gem "resque", "~>1.24.0"
-gem 'faker'
 gem 'kaminari'
+gem 'pg'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -21,6 +19,7 @@ group :assets do
 end
 
 group :development, :test do
+  gem 'faker'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
   gem 'cane'

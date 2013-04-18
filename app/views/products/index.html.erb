@@ -1,7 +1,3 @@
-<% if current_store.pending? %>
-<p id="notice"><%= "Not Found: This store is pending approval." %></p>
-<%= render partial: 'store_details' %>
-<% else %>
 <div class="product-index">
   <section class="row">
     <%= render partial: 'category_dropdown',
@@ -15,6 +11,4 @@
   </div>
 
   <div style="width: 375px; margin-left: auto; margin-right:auto;"> <%= paginate @products %> </div>
-
 </div>
-<% end %>
