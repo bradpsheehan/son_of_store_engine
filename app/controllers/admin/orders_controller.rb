@@ -9,7 +9,7 @@ class Admin::OrdersController < ApplicationController
   end
 
   def show
-    @order = current_user.orders.find(params[:id])
+    @order = Order.find(params[:id])
   end
 
   def update
