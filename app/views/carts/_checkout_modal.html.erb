@@ -8,9 +8,9 @@
       <%= f.input :password %>
       <%= f.hidden_field :next_page, value: checkout_path %>
       <%= f.button :submit, t('navigation.login'), class: "btn btn-large btn-custom-lighten btn-block" %>
-      <%= link_to 'Create an Account', signup_path(next_page: checkout_path), class: 'btn btn-block' %>
-      <hr>
-      <%= link_to 'Continue as Guest', checkout_path, class: 'btn btn-block' %>
+      <%= link_to 'Signup', signup_path(next_page: checkout_path), class: 'btn btn-block' %>
+      <br />
+      <%= link_to 'Checkout as Guest', checkout_path, class: 'btn btn-block' %>
       <% end %>
     </div>
     <div style="clear:both"></div>
