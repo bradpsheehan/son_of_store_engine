@@ -13,6 +13,7 @@ gem 'validation-scopes'
 gem "resque", "~>1.24.0"
 gem 'faker'
 gem 'kaminari'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.3'
@@ -28,7 +29,6 @@ group :development, :test do
   gem 'debugger'
   gem 'capybara'
   gem 'simplecov'
-  gem 'newrelic_rpm'
 end
 
 group :test do
