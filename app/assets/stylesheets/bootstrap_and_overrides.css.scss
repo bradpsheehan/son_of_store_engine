@@ -16,6 +16,14 @@ h1, h2, h3, h4 {
 
 // MODAL
 
+body .modal {
+  width: 35%;
+  left: 32.5%; /* (100%-width)/2 */
+  margin: auto auto auto auto;
+  padding-left: 2.5%;
+  text-align: center;
+}
+
 .center {
   margin-left: auto;
   margin-right: auto;
